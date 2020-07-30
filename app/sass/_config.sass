@@ -1,0 +1,67 @@
+// USER VARIABLES SECTION
+
+$accent: #097e89
+$grey: #3d3d3d
+$dark-grey: #373737
+
+$fontsize: 16px 
+$textcolor: #fff 
+$system: -apple-system, BlinkMacSystemFont, Arial, sans-serif 
+$sansation: Sansation, sans-serif
+$light-border: 1px solid rgba(255, 255, 255, 0.4)
+
+// Bootstrap compatible gutter variable => $gutter
+$grid-gutter-width: 20px
+$gutter: $grid-gutter-width
+
+// IMPORT SECTION
+
+@import 'libs/bootstrap/scss/bootstrap-reboot.scss' // Bootstrap Reboot collection
+@import 'libs/bootstrap/scss/mixins/_breakpoints.scss' // Bootstrap Breakpoints mixin
+@import 'libs/bootstrap/scss/bootstrap-grid.scss' // Bootstrap Grid
+
+// FONTS LOAD SECTION
+
+@mixin font($fname, $fstyle, $fweight, $furl)
+	@font-face
+		font-family: $fname
+		font-style: $fstyle
+		font-weight: $fweight
+		// font-display: swap // Uncomment to initially display system fonts
+		src: local($fname), url($furl) format('woff2')
+
+@include font('Sansation', normal, 400, '../fonts/sansationregular.woff2')
+@include font('Sansation', normal, 800, '../fonts/sansationbold.woff2')
+@include font('Myriad Pro', normal, 600, '../fonts/MyriadPro-Semibold.woff2')
+@include font('Helvetica LT Std', normal, 800, '../fonts/HelveticaLTStd-Bold.woff2')
+@include font('Helvetica LT Std Cond', normal, 300, '../fonts/HelveticaLTStd-LightCond.woff2')
+@include font('NEOTERIC', normal, 800, '../fonts/NEOTERIC-Bold.woff2')
+
+// GENERAL DOCUMENT STYLES
+
+::placeholder
+	color: #666
+
+::selection
+	background-color: $accent
+	color: #fff
+
+input, textarea
+	outline: none
+	&:focus:required:invalid
+		border-color: red
+	&:required:valid
+		border-color: green
+
+body
+	font-family: $sansation
+	font-size: $fontsize
+	min-width: 320px
+	position: relative
+	line-height: 1.65
+	overflow-x: hidden
+	color: $textcolor
+	background-color: $grey
+
+.bd
+	border: 1px solid red
