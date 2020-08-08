@@ -55,6 +55,10 @@ async function replaceTopImage(config) {
     replacingImage.style.left = config.replacingImgStartCordX + 'px';
     replacingImage.classList.remove('hidden');
 
+    replacingImage.onload = function () {
+      console.log(1);
+    }
+
     currentImage.style.left = -config.replacingImgStartCordX + 'px';
     replacingImage.style.left = 0 + 'px';
 
