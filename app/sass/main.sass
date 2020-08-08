@@ -8,7 +8,7 @@ header
     background-color: rgb(17,18,20)
 
   &.bg-img-1
-    background-color: rgb(11,17,20)
+    background-color: rgb(0,11,30)
 
   &.bg-img-2
     background-color: black
@@ -22,11 +22,12 @@ header
     .arrow
       height: 30px
       width: 25px
-      border: $light-border
+      border: 1px solid white
       border-radius: 5px
       background-color: transparent
       position: absolute
       top: 50%
+      transition: $common-transition
 
       &::before, &::after
         display: block
@@ -41,6 +42,15 @@ header
 
       &::after
         top: 18px
+
+      &:hover
+        border-color: $accent
+
+        &::before, &::after
+          background-color: $accent
+
+      &:focus, &:active
+        outline: none
 
     .arrow-left
       left: 20px
@@ -96,11 +106,13 @@ header
         align-items: center
 
         #header-menu-button
-          height: 25px
-          width: 25px
+          height: 30px
+          width: 30px
           background-color: transparent
-          background-image: url(../images/Menu.svg)
+          background-image: url(../images/dest/Menu.svg)
+          background-repeat: no-repeat
           background-size: contain
+          background-position: 50% 50%
           border: none
 
           &:focus, &:active
@@ -114,6 +126,7 @@ header
       a
         color: white
         vertical-align: center
+        transition: $common-transition
 
       a:hover
         color: $accent
@@ -135,13 +148,13 @@ header
         margin-right: 10px
 
         &.facebook
-          background-image: url(../images/Facebook.svg)
+          background-image: url(../images/dest/Facebook.svg)
 
         &.twitter
-          background-image: url(../images/Twitter.svg)
+          background-image: url(../images//dest/Twitter.svg)
 
         &.google-plus
-          background-image: url(../images/Google-Plus.svg)
+          background-image: url(../images/dest/Google-Plus.svg)
 
   .header-navigation-mobile
     display: none
@@ -152,7 +165,7 @@ header
 
   #header-banner
     $banner-height: 210px
-    width: 50%
+    width: 60%
     height: $banner-height
     position: absolute
     top: 50%
@@ -212,6 +225,7 @@ header
       font-size: 14px
       padding: 5px 25px
       border: 2px solid #ffffff
+      transition: $common-transition
 
       &:hover
         color: $accent
@@ -251,7 +265,7 @@ header
     height: 100%
 
   .half-background-image
-    background: url(../images/about-us-bg.jpg) no-repeat
+    background: url(../images/dest/about-us-bg.jpg) no-repeat
 
   h2
     font-weight: normal
@@ -342,10 +356,13 @@ header
       position: absolute
       left: 0
       top: 0
-      // border: 5px solid red
 
       .item:hover
         background-color: transparent
+
+        .arrow-90
+          &::before, &::after
+            background-color: $grey
 
     .item
       display: none
@@ -356,7 +373,6 @@ header
       padding: 0 30px
       transition-property: opacity, background-color
       transition-duration: .8s
-      transition-timing-function: ease
       height: 550px
       position: relative
       opacity: 1
@@ -367,18 +383,6 @@ header
       &.transparent
         opacity: 0
         transition: all .8s linear
-
-      &.psa
-        position: absolute
-        top: 0
-        left: 0
-
-      &.hover
-        background-color: $accent
-
-        .arrow-90
-          &::before, &::after
-            background-color: #fff
 
       &:hover
         background-color: $accent
@@ -487,6 +491,7 @@ header
 
         &::after
           display: block
+          opacity: 1
           content: ''
           width: 30%
           height: 1px
@@ -495,8 +500,15 @@ header
           bottom: -15px
           left: 35%
 
-        .hidden
-          display: none
+        [class^=content]
+          opacity: 1
+          transition: opacity .8s
+
+          &:not(:first-child)
+            display: none
+            opacity: 0
+
+          @include fadeStyles
 
       .counter
         position: relative
@@ -671,7 +683,7 @@ header
 
     input[type="submit"]
       height: 40px
-      width: 95
+      width: 95px
       background-color: #fff
       color: $accent
       font-family: 'Myriad Pro'
@@ -720,9 +732,12 @@ footer
     .social-wrapper
       display: flex
       flex-direction: column
-      justify-content: space-around
+      justify-content: center
 
       .subscribe-form
+        display: flex
+        margin-bottom: 30px
+
         input
           height: 40px
           border: 1px solid #fff
@@ -741,16 +756,13 @@ footer
           background-color: #0072bc
           color: #fff
           position: relative
-          right: 5px
-          top: 1px
+          right: 3px
 
       .social-links
         display: flex
         list-style: none
-        margin: 0
-        padding: 0
 
-        li
+        li:not(:last-child)
           margin-right: 10px
 
         a
@@ -765,24 +777,24 @@ footer
           background-size: 40px
 
         .facebook
-          background-image: url(../images/Facebook.png)
+          background-image: url(../images/dest/Facebook.png)
 
         .twitter
-          background-image: url(../images/Twitter.png)
+          background-image: url(../images/dest/Twitter.png)
 
         .google-plus
-          background-image: url(../images/Google-Plus.png)
+          background-image: url(../images/dest/Google-Plus.png)
 
         .dribble
-          background-image: url(../images/Dribbble.png)
+          background-image: url(../images/dest/Dribbble.png)
 
         .behance
-          background-image: url(../images/Behance.png)
+          background-image: url(../images/dest/Behance.png)
 
         .instagram
-          background-image: url(../images/Instagram.png)
+          background-image: url(../images/dest/Instagram.png)
 
-@media screen and ( max-width: 720px )
+@media screen and ( max-width: 1200px)
   header
     #header-banner
       $banner-height: 220px
@@ -790,20 +802,48 @@ footer
       width: 70%
 
       &::before, &::after
-        width: 30%
+        width: 35%
 
       .content
         strong
-          font-size: 32px
+          font-size: 48px
 
       .button
         top: $banner-height
+
+  .section-title
+    .container
+      $line-width: 30%
+
+      &::before, &::after
+        width: $line-width
+
+      h2
+        &::before, &::after
+          width: 0.3*$line-width
+
+        &::before
+          left: 0.7*$line-width
+
+        &::after
+          right: 0.7*$line-width
+
+@media screen and ( max-width: 992px)
+  header
+    #header-banner
+      .content
+        strong
+          font-size: 42px
 
     .header-navigation
       display: grid
       grid-template-columns: 1fr 1fr
       grid-template-rows: 60px auto
       border-bottom: none
+      padding: 0 15px
+
+      $item-height: 50px
+      $count-of-items: 8
 
       .menu
         display: block
@@ -812,11 +852,17 @@ footer
         grid-column-end: -1
         grid-row-start: 2
         grid-row-end: -1
+        overflow: hidden
+        transition: $common-transition
+        height: $item-height - 1
+        margin-top: 10px
 
         li
-          display: none
+          display: flex
+          align-items: center
+          justify-content: center
           text-align: center
-          padding: 10px 0
+          height: $item-height
           background-color: $accent
           border-bottom: $light-border
 
@@ -829,14 +875,206 @@ footer
 
         .toogle
           display: flex
-          border-bottom: none
 
-      .menu.opened
-        .item
-          display: block
+        &.opened
+          height: $item-height*$count-of-items
 
-        .toogle
-          border-bottom: $light-border
+          .toogle
+            border-bottom: $light-border
+
+      .social-networks
+        display: flex
+        justify-content: flex-end
+
+        a
+          $radius: 35px
+          height: $radius
+          width: $radius
+          border-radius: 50%
+          border: 1px solid #fff
+          opacity: 0.8
+          background-size: $radius $radius
+          background-repeat: no-repeat
+          background-position: 50% 50%
+          margin-right: 10px
+
+        a:last-child
+          margin-right: 0
+
+      .logo
+        font-size: 30px
+        position: relative
+        top: 2.5px
+        margin: 0
+
+  .about-us
+    .container
+      min-height: 325px
+
+  .section-title
+    .container
+      $line-width: 25%
+
+      &::before, &::after
+        width: $line-width
+
+      h2
+        &::before, &::after
+          width: 0.4*$line-width
+
+        &::before
+          left: 0.6*$line-width
+
+        &::after
+          right: 0.6*$line-width
+
+  .services
+    .grid-container
+      grid-template-columns: repeat(2, 1fr)
+
+      .item
+        height: 500px
+
+  .feedback
+    .content
+      .quotes
+        padding: 50px 40px
+        max-width: 500px
+        margin: 0 auto
+        padding-bottom: 30px
+
+        .counter
+          width: 35%
+          min-width: 100px
+          margin: 0 auto
+
+      .photos
+        flex-direction: row
+        padding: 20px 0
+        margin-bottom: 30px
+
+  .clients
+    .content
+      .client img
+        transform: scale(0.8)
+
+  .queries
+    h2
+      margin-bottom: 20px
+      font-size: 30px
+
+    .description
+      margin-bottom: 25px
+
+    .form-wrapper
+      display: block
+      padding: 0
+      padding-left: 6px
+
+      input
+        display: inline-block
+
+      input[type="text"]
+        width: 37%
+        max-width: 200px
+
+      input[type="submit"]
+        width: 20%
+        max-width: 95px
+
+  footer
+    .container
+      .links-wrapper
+        margin-bottom: 40px
+
+      .social-wrapper
+
+        .social-links
+          padding: 0
+          position: relative
+          left: -2.5px
+
+@media screen and ( max-width: 768px )
+  header
+    .container
+      .arrow
+        transform: scale(1.3) translate(16.25%, -16.25%)
+
+    #header-banner
+      $banner-height: 210px
+      border: none
+
+      &::before, &::after
+        display: none
+
+      .content
+        strong
+          font-size: 42px
+
+      .button
+        top: $banner-height + 75px
+
+  .about-us
+    .container
+      padding-bottom: 35px
+
+  .section-title
+    height: 100px
+
+    .container
+
+      &::before, &::after
+        display: none
+
+      h2
+        font-size: 32px
+
+        &::before, &::after
+          display: none
+
+  .services
+    .grid-container
+      grid-template-columns: 1fr
+
+      .item:hover
+        background-color: $grey
+
+    .arrow-90
+      &.left
+        left: 0
+        transform: scale(1.3) translate(16.25%, -16.25%)
+
+      &.right
+        transform: scale(1.3) translate(-16.25%, -16.25%)
+
+  .feedback
+    .content
+      .photos
+        justify-content: center
+
+        .photo-container:first-child
+          margin-right: 35px
+
+        .photo-container:last-child
+          display: none
+
+      .quotes
+        .counter
+          width: 100%
+
+  .clients
+    .content
+      .grid
+        grid-template-columns: repeat(2, 1fr)
+
+@media screen and ( max-width: 576px )
+  header
+    .container
+      #header-banner
+        .content
+          width: 90%
+          strong
+            font-size: 36px
 
   .about-us
     .container
@@ -844,10 +1082,10 @@ footer
 
     .read-more
       margin-top: 15px
+      margin-bottom: 30px
 
   .section-title
     .container
-      $line-width: 10%
 
       &::before, &::after
         display: none
@@ -857,65 +1095,37 @@ footer
 
   .services
     .grid-container
-      grid-template-columns: 1fr
-
       .item
         height: 450px
 
   .feedback
     .content
-      .quotes
-        padding: 50px 40px
-
       .photos
-        flex-direction: column
-        padding: 20px 0
+        .photo-container:first-child
+          margin: 0
+          padding: 0
 
-      .photo-container:not(:first-child)
-        display: none
+        .photo-container:not(:first-child)
+          display: none
 
   .clients
     .content
       .grid
-        grid-template-columns: repeat(2, 1fr)
-        column-gap: 20px
+        grid-template-columns: 1fr
 
-      .client img
-        transform: scale(0.8)
+        .client:nth-child(even)
+          display: none
 
   .queries
+    padding-left: 10px
+
     h2
       font-size: 24px
-      text-align: center
-      margin-bottom: 20px
 
-    .description
-      margin-left: 17px
-      margin-bottom: 25px
-
-    .form-wrapper
-      display: block
-      margin-left: 10px
-
-      input
-        display: inline-block
-
-      input[type="text"]
-        width: 37%
-
-        &.name
-          left: 8px
-
-        &.number
-          left: 5px
-
-      input[type="submit"]
-        width: 20%
   footer
     .container
       .links-wrapper
         display: block
-        margin-bottom: 20px
 
         .link-list
           &:not(:last-child)
@@ -923,7 +1133,3 @@ footer
 
           li:not(:last-child)
             margin-bottom: 5px
-
-    .social-wrapper
-      .subscribe-form
-        margin-bottom: 15px

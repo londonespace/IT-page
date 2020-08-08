@@ -10,15 +10,28 @@ $system: -apple-system, BlinkMacSystemFont, Arial, sans-serif
 $sansation: Sansation, sans-serif
 $light-border: 1px solid rgba(255, 255, 255, 0.4)
 
-// Bootstrap compatible gutter variable => $gutter
-$grid-gutter-width: 20px
-$gutter: $grid-gutter-width
+$common-transition: all 0.4s
+
+// USER MIXINS SECTION
+
+@mixin fadeStyles
+	&.f-opaque
+		opacity: 1
+
+	&.f-transparent
+		opacity: 0
+
+	&.f-visible
+		display: block
+
+	&.f-hidden
+		display: none
 
 // IMPORT SECTION
 
-@import 'libs/bootstrap/scss/bootstrap-reboot.scss' // Bootstrap Reboot collection
-@import 'libs/bootstrap/scss/mixins/_breakpoints.scss' // Bootstrap Breakpoints mixin
-@import 'libs/bootstrap/scss/bootstrap-grid.scss' // Bootstrap Grid
+@import '../libs/bootstrap/scss/bootstrap-reboot.scss' // Bootstrap Reboot collection
+@import '../libs/bootstrap/scss/mixins/_breakpoints.scss' // Bootstrap Breakpoints mixin
+@import '../libs/bootstrap/scss/bootstrap-grid.scss' // Bootstrap Grid
 
 // FONTS LOAD SECTION
 
