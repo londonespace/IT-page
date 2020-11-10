@@ -8,6 +8,12 @@ header.isAnimating = false;
 topImagesWrapper.numOfCurrentImage = 0;
 topImagesWrapper.transitionDuration = 2000;
 
+topImagesWrapper.imagesSrc = [
+  'background-bg-0.png',
+  'background-bg-1.png',
+  'background-bg-2.png'
+];
+
 let headerArrowLeft = document.getElementById('header-arrow-left');
 let headerArrowRight = document.getElementById('header-arrow-right');
 
@@ -42,7 +48,7 @@ header.onclick = function () {
   replaceTopImage(arrow.roundAboutConfig);
   replaceHeaderBannerContent(arrow.roundAboutConfig);
   replaceHeaderBackground(arrow.roundAboutConfig);
-}
+};
 
 async function replaceTopImage(config) {
   let numOfCurrentImage = topImagesWrapper.numOfCurrentImage;
@@ -75,7 +81,7 @@ async function replaceTopImage(config) {
     if (num === -1) num = 2;
 
     for (image of topImagesWrapper.children) {
-      if (!image.src.includes(`banner-bg-${num}.png`)) continue;
+      if (!image.src.includes(num)) continue;
       return image;
     }
   }

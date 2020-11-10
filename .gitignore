@@ -3,4 +3,5 @@
 /.git/
 /app/css/
 /**/package-lock.json
+/sources/
 
