@@ -9,10 +9,9 @@ const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 
 const cleanCSS = require('gulp-clean-css');
-const modifyCssUrls = require('gulp-modify-css-urls');
 const imageMin = require('gulp-imagemin');
-
 const newer = require('gulp-newer');
+
 const del = require('del');
 
 //BROWSER 'SYNC'
@@ -46,7 +45,6 @@ function buildDistStyles() {
 		.pipe(sass())
 		.pipe(autoprefixer({ overrideBrowserslist: ['last 10 versions'], grid: true }))
 		.pipe(cleanCSS(({ level: { 1: { specialComments: 0 } }/*, format: 'beautify'*/ })))
-		.pipe(modifyCssUrls(modifyCssUrlsOptions))
 		.pipe(dest('app/css/'));
 }
 
@@ -89,8 +87,8 @@ function buildCopy() {
 	return src([
 		'app/css/*.min.css',
 		'app/js/*.min.js',
-		'app/img/dest/*',
-		'app/html/*.html',
+		'app/images/dest/*',
+		'app/*.html',
 		'app/fonts/*'
 	], { base: 'app' })
 		.pipe(dest('dist'));
