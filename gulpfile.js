@@ -10,8 +10,6 @@ const autoprefixer = require('gulp-autoprefixer');
 
 const cleanCSS = require('gulp-clean-css');
 const imageMin = require('gulp-imagemin');
-const newer = require('gulp-newer');
-
 const del = require('del');
 
 //BROWSER 'SYNC'
@@ -70,15 +68,10 @@ function buildDistScripts() {
 
 //IMAGES
 
-function minimazeImages() {
-	return src('app/img/src/*')
-		.pipe(newer('app/img/src/*'))
+function exportImagesToDist() {
+	return src('app/images/*')
 		.pipe(imageMin())
-		.pipe(dest('app/img/dest/'));
-}
-
-function cleanMinImages() {
-	return del('dist/img/**/*', { force: true });
+		.pipe(dest('dist/images/'));
 }
 
 // BUILD
@@ -87,7 +80,7 @@ function buildCopy() {
 	return src([
 		'app/css/*.min.css',
 		'app/js/*.min.js',
-		'app/images/dest/*',
+		'app/images/*',
 		'app/*.html',
 		'app/fonts/*'
 	], { base: 'app' })
@@ -104,7 +97,6 @@ function startWatching() {
 	watch('app/index.html', browserSync.reload);
 	watch(styleModules, buildAppStyles);
 	watch(['app/js/**/*.js', '!app/js/app.min.js'], buildAppScripts);
-	watch('app/img/*', minimazeImages);
 }
 
 exports.initBrowserSync = initBrowserSync;
@@ -115,10 +107,7 @@ exports.scripts = buildAppScripts;
 const appCodeBuild = series(buildAppStyles, buildAppScripts);
 const distCodeBuild = series(buildDistStyles, buildDistScripts)
 
-exports.minimazeImages = minimazeImages;
-exports.cleanMinImages = cleanMinImages;
-
-exports.build = series(cleanDist, distCodeBuild, buildCopy, minimazeImages);
+exports.build = series(cleanDist, distCodeBuild, buildCopy, exportImagesToDist);
 
 exports.default = parallel(appCodeBuild,
 	series(initBrowserSync, browserSync.reload), startWatching);
