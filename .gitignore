@@ -2,6 +2,7 @@
 /dist/
 /.git/
 /app/css/
+/app/sass/app.min.sass
 /app/js/app.min.js
 /**/package-lock.json
 /sources/

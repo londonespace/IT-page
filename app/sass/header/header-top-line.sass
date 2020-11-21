@@ -1,0 +1,40 @@
+.header-top-line
+  display: flex
+  align-items: center
+  min-height: 60px
+  border-bottom: $light-border
+
+.header-logo
+  flex-grow: 1
+  font-size: 24px
+  font-weight: normal
+  text-transform: uppercase
+  margin-left: 5px
+
+  span
+    color: #da2346
+
+.header-menu
+  flex-grow: 8
+
+.header-social-networks
+  flex-grow: 1
+  display: flex
+  justify-content: flex-end
+
+@media screen and (max-width: 992px)
+  .header-top-line
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-template-rows: 60px auto
+    grid-template-areas: "logo networks" "nav nav"
+    border-bottom: none
+
+  .header-logo
+    grid-area: logo
+
+  .header-menu
+    grid-area: nav
+
+  .header-social-networks
+    grid-area: networks

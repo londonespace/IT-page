@@ -1,0 +1,81 @@
+.header-menu-list
+  display: flex
+  justify-content: space-around
+  font-size: 20px
+  text-transform: capitalize
+  letter-spacing: -0.05em
+
+.header-menu-item
+  position: relative
+
+  &:after
+    display: none
+    content: ''
+    width: 95%
+    height: 1px
+    background-color: rgba(255, 255, 255, 0.4)
+    +psa-centering
+
+.header-menu-link
+  color: white
+  transition: $common-transition
+
+  &:hover
+    color: $accent
+    text-decoration: none
+
+.header-menu-hamburger-btn
+  display: none
+  position: relative
+  width: 100%
+  border: none
+  background: transparent
+
+  &:focus, &:active
+    outline: none
+
+  &::after
+    display: block
+    content: ''
+    height: 30px
+    width: 30px
+    background-color: transparent
+    background-image: url(../images/Menu.svg)
+    background-repeat: no-repeat
+    background-size: contain
+    background-position: 50% 50%
+    border: none
+    +psa-centering
+
+@media screen and ( max-width: 992px  )
+  $item-height: 50px
+
+  .header-menu
+    height: $item-height
+    overflow: hidden
+    background-color: $accent
+    margin: 0 5px
+
+    &.header-menu--opened
+      height: auto
+
+  .header-menu-list
+    display: block
+
+  .header-menu-item
+    height: $item-height
+
+    &::after
+      display: block
+      top: 0
+
+  .header-menu-link
+    +psa-centering
+
+  .header-menu-link:hover
+    text-decoration: none
+    color: white
+
+  .header-menu-hamburger-btn
+    height: $item-height
+    display: block

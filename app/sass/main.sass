@@ -1,5 +1,3 @@
-@import config
-
 header
   $transition-duration: 2s
   transition: background-color $transition-duration ease
@@ -12,6 +10,11 @@ header
 
   &.bg-img-2
     background-color: black
+
+  ul
+    padding: 0
+    margin: 0
+    list-style: none
 
   .container
     position: relative
@@ -75,89 +78,6 @@ header
 
       &::after
         transform: rotate(-50deg)
-
-  .logo
-    font-size: 24px
-    text-transform: uppercase
-    margin-left: 5px
-    span
-      color: #da2346
-
-  .header-navigation
-    min-height: 60px
-    align-items: center
-    border-bottom: $light-border
-    display: grid
-    grid-template-columns: 1fr 8fr 1fr
-    grid-column-gap: 30px
-
-    .menu
-      display: flex
-      justify-content: space-around
-      font-size: 20px
-      text-transform: capitalize
-      letter-spacing: -0.05em
-      margin: 0
-      padding: 0
-
-      .toogle
-        display: none
-        justify-content: center
-        align-items: center
-
-        #header-menu-button
-          height: 30px
-          width: 30px
-          background-color: transparent
-          background-image: url(../images/Menu.svg)
-          background-repeat: no-repeat
-          background-size: contain
-          background-position: 50% 50%
-          border: none
-
-          &:focus, &:active
-            outline: none
-
-      li
-        list-style: none
-        margin: 0
-        padding: 0
-
-      a
-        color: white
-        vertical-align: center
-        transition: $common-transition
-
-      a:hover
-        color: $accent
-        text-decoration: none
-
-    .social-networks
-      display: flex
-      justify-content: flex-end
-
-      a
-        height: 25px
-        width: 25px
-        border-radius: 50%
-        border: 1px solid #fff
-        opacity: 0.8
-        background-size: 25px 25px
-        background-repeat: no-repeat
-        background-position: 50% 50%
-        margin-right: 10px
-
-        &.facebook
-          background-image: url(../images/Facebook.svg)
-
-        &.twitter
-          background-image: url(../images//Twitter.svg)
-
-        &.google-plus
-          background-image: url(../images/Google-Plus.svg)
-
-  .header-navigation-mobile
-    display: none
 
   .header-banner-wrapper
     height: 510px
@@ -834,53 +754,6 @@ footer
       .content
         strong
           font-size: 42px
-
-    .header-navigation
-      display: grid
-      grid-template-columns: 1fr 1fr
-      grid-template-rows: 60px auto
-      border-bottom: none
-      padding: 0 15px
-
-      $item-height: 50px
-      $count-of-items: 8
-
-      .menu
-        display: block
-        justify-content: center
-        grid-column-start: 1
-        grid-column-end: -1
-        grid-row-start: 2
-        grid-row-end: -1
-        overflow: hidden
-        transition: $common-transition
-        height: $item-height - 1
-        margin-top: 10px
-
-        li
-          display: flex
-          align-items: center
-          justify-content: center
-          text-align: center
-          height: $item-height
-          background-color: $accent
-          border-bottom: $light-border
-
-        li:last-child
-          border-bottom: none
-
-        a:hover
-          text-decoration: none
-          color: white
-
-        .toogle
-          display: flex
-
-        &.opened
-          height: $item-height*$count-of-items
-
-          .toogle
-            border-bottom: $light-border
 
       .social-networks
         display: flex

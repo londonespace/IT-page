@@ -19,18 +19,23 @@ function initBrowserSync() {
 		server: { baseDir: 'app' },
 		notify: false,
 		open: false,
-		startPath: '/html/index.html'
+		startPath: ''
 	});
 }
 
 // STYLES
 
-let styleModules = 'app/sass/main.sass';
+let styleModules = [
+	'app/sass/config.sass',
+	'app/sass/main.sass',
+	'app/sass/header/*.sass'
+];
 
 function buildAppStyles() {
 	return src(styleModules)
 		.pipe(sourcemaps.init())
 		.pipe(concat('app.min.sass'))
+		.pipe(dest('app/sass/'))
 		.pipe(sass())
 		.pipe(sourcemaps.write())
 		.pipe(dest('app/css/'))
